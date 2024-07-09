@@ -17,6 +17,7 @@ Question
 ![image](https://github.com/DeepanshuS-ConsultAdd/DBMS_Project/assets/174502313/fb2f1064-0fb1-4369-9a00-7278354e59d4)
 
 Model
+
 <img width="753" alt="Screenshot 2024-07-09 at 11 29 50 AM" src="https://github.com/DeepanshuS-ConsultAdd/DBMS_Project/assets/174502313/50a9bce3-2297-4bf4-9c80-aeac8750ce97">
 
 Table
