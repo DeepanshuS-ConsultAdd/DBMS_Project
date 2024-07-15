@@ -174,6 +174,5 @@ ORDER BY city.name, TopHotels.hotel_id;
 
 ```
 ## Output
-![alt text](image-1.png)
-<img width="817" alt="image" src="https://github.com/user-attachments/assets/9835babd-a2af-461c-83a0-fae1c2ec81bf">
+<img width="816" alt="image" src="https://github.com/user-attachments/assets/d72d8570-7587-45e4-902b-f637e45f93dc">
 
