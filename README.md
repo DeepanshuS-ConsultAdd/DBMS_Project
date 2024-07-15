@@ -143,38 +143,37 @@ WITH LastBooking AS (
   GROUP BY h.city_id
 ),
 BookingCounts AS (
-  SELECT h.city_id, h.id AS hotel_id, COUNT(b.id) AS bookings
+  SELECT h.city_id, h.id AS hotel_id, COUNT(b.id) AS booking_count
   FROM hotel h
   JOIN booking b ON h.id = b.hotel_id
   GROUP BY h.city_id, h.id
 ),
-MaxBookings AS (
-  SELECT city_id, MAX(bookings) AS max_bookings
-  FROM BookingCounts
-  GROUP BY city_id
-),
 TopHotels AS (
-  SELECT counts.city_id, counts.hotel_id, counts.bookings
-  FROM BookingCounts counts
-  JOIN MaxBookings mb ON counts.city_id = mb.city_id
-  AND counts.bookings = mb.max_bookings
+  SELECT city_id, hotel_id
+  FROM BookingCounts
+  WHERE (city_id, booking_count) IN (
+    SELECT city_id, MAX(booking_count)
+    FROM BookingCounts
+    GROUP BY city_id
+  )
 ),
 HotelPhotos AS (
-  SELECT id AS hotel_id, photos->>0 AS photo
+  SELECT id AS hotel_id, photos->>0 AS main_photo
   FROM hotel
-),
-Result AS (
-  SELECT c.name as Name, lb.last_booking as Last_Booking, th.hotel_id As Hotel_Id, hp.photo As Photo
-  FROM TopHotels th
-  JOIN HotelPhotos hp ON th.hotel_id = hp.hotel_id
-  JOIN LastBooking lb ON c.id = lb.city_id
-  JOIN city c ON th.city_id = c.id
 )
+SELECT 
+  city.name AS city_name,
+  LastBooking.last_booking,
+  TopHotels.hotel_id,
+  HotelPhotos.main_photo
+FROM city
+JOIN LastBooking ON city.id = LastBooking.city_id
+JOIN TopHotels ON city.id = TopHotels.city_id
+JOIN HotelPhotos ON TopHotels.hotel_id = HotelPhotos.hotel_id
+ORDER BY city.name, TopHotels.hotel_id;
 
-SELECT * 
-FROM Result 
-ORDER BY Name, Hotel_Id;
 ```
 ## Output
+![alt text](image-1.png)
 <img width="817" alt="image" src="https://github.com/user-attachments/assets/9835babd-a2af-461c-83a0-fae1c2ec81bf">
 
