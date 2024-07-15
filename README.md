@@ -30,6 +30,7 @@ Table
 
 ## Database Schema
 
+```sql
 CREATE TABLE city
 (
 	id INT PRIMARY KEY,
@@ -54,6 +55,7 @@ CREATE TABLE booking
 	start_date DATE NOT NULL,
 	end_date DATE NOT NULL
 );
+```
 
 ## DESCRIPTION
 
@@ -64,6 +66,8 @@ Remember that the query will also be run of different datasets.
 
 
 ## Solution:
+
+```sql
 
 CREATE TABLE city
 (
@@ -170,7 +174,7 @@ Result AS (
 SELECT * 
 FROM Result 
 ORDER BY Name, Hotel_Id;
-
+```
 ## Output
 <img width="817" alt="image" src="https://github.com/user-attachments/assets/9835babd-a2af-461c-83a0-fae1c2ec81bf">
 
